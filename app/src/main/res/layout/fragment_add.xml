@@ -4,17 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp"
     tools:context=".fragment.AddFragment">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="5dp"
+        style="@style/loginFormStyles"
         android:text="Student Details"
-        android:textSize="32sp"
-        android:textStyle="bold" />
+        android:textAlignment="center"
+        android:textSize="32sp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -23,6 +19,7 @@
         <EditText
             android:id="@+id/etName"
             style="@style/loginFormStyles"
+            android:layout_marginBottom="15dp"
             android:hint="Full Name" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -33,6 +30,7 @@
         <EditText
             android:id="@+id/etAge"
             style="@style/loginFormStyles"
+            android:layout_marginBottom="15dp"
             android:hint="Age"
             android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -40,6 +38,7 @@
 
     <TextView
         style="@style/loginFormStyles"
+        android:layout_marginBottom="5dp"
         android:text="Select Gender" />
 
     <RadioGroup
@@ -50,6 +49,7 @@
             android:id="@+id/rbMale"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:checked="true"
             android:text="Male"
             android:textSize="22sp" />
@@ -58,6 +58,7 @@
             android:id="@+id/rbFemale"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:text="Female"
             android:textSize="22sp" />
 
@@ -65,6 +66,7 @@
             android:id="@+id/rbOther"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:text="Others"
             android:textSize="22sp" />
     </RadioGroup>
@@ -76,6 +78,7 @@
         <EditText
             android:id="@+id/etAddress"
             style="@style/loginFormStyles"
+            android:layout_marginBottom="20dp"
             android:hint="Address" />
     </com.google.android.material.textfield.TextInputLayout>
 

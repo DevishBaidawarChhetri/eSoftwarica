@@ -33,7 +33,7 @@ public class AboutFragment extends Fragment {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setAppCacheEnabled(true);
         webView.setWebViewClient(new WebViewClient());
-        webView.loadUrl("https://devish.com.np/");
+        webView.loadUrl("https://www.devish.com.np/");
         return view;
     }
 
