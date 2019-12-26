@@ -4,6 +4,8 @@ package com.example.esoftwarica.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -16,17 +18,14 @@ import android.widget.Toast;
 
 import com.example.esoftwarica.DashboardActivity;
 import com.example.esoftwarica.R;
+import com.example.esoftwarica.adapter.StudentsAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment implements RadioGroup.OnCheckedChangeListener {
+public class HomeFragment extends Fragment {
 
-    EditText etName, etAge, etAddress;
-    RadioGroup rgGender;
-    Button btnSave;
-    String name, address, gender = "male";
-    int age;
+   RecyclerView recyclerView;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -38,56 +37,15 @@ public class HomeFragment extends Fragment implements RadioGroup.OnCheckedChange
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        etName = view.findViewById(R.id.etName);
-        etAge = view.findViewById(R.id.etAge);
-        etAddress = view.findViewById(R.id.etAddress);
-        rgGender = view.findViewById(R.id.rgGender);
-        btnSave = view.findViewById(R.id.btnSave);
-        rgGender.setOnCheckedChangeListener(this);
-
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (validation()){
-                    name = etName.getText().toString();
-                    address = etAddress.getText().toString();
-                    age = Integer.parseInt(etAge.getText().toString());
-                    DashboardActivity.studentsList.add(new Students(name,gender,address,age));
-                    Toast.makeText(getContext(), "Added successfully!!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
-    @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-        if (checkedId == R.id.rbMale) {
-            gender = "male";
+        recyclerView = view.findViewById(R.id.recyclerView);
+        if (DashboardActivity.studentsList.isEmpty()) {
+            Toast.makeText(getContext(),"empty" , Toast.LENGTH_SHORT).show();
         }
-        if (checkedId == R.id.rbFemale) {
-            gender = "female";
+        else {
+            StudentsAdapter studentsAdapter = new StudentsAdapter(getContext(), DashboardActivity.studentsList);
+            recyclerView.setAdapter(studentsAdapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         }
-        if (checkedId == R.id.rbOther) {
-            gender = "other";
-        }
-    }
-    private boolean validation() {
-        if (TextUtils.isEmpty(etName.getText())) {
-            etName.setError("Enter full name");
-            etName.requestFocus();
-            return false;
-        } else if (TextUtils.isEmpty(etAge.getText())) {
-            etAge.setError("Enter the age");
-            etAge.requestFocus();
-            return false;
-        } else if (TextUtils.isEmpty(etAddress.getText())) {
-            etAddress.setError("Enter the address");
-            etAddress.requestFocus();
-            return false;
-        } else if (TextUtils.isEmpty(gender)) {
-            Toast.makeText(getContext(), "Select gender", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        return true;
+        return view;
     }
 }
