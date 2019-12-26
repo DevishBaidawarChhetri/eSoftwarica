@@ -4,13 +4,14 @@ public class Students {
     private String name, gender, address;
     private int age, imgProfileId;
 
-    public Students(String name, String gender, String address, int age, int imgProfileId) {
+    public Students(String name, String gender, String address, int age) {
         this.name = name;
         this.gender = gender;
         this.address = address;
         this.age = age;
         this.imgProfileId = imgProfileId;
     }
+
 
     public String getName() {
         return name;
